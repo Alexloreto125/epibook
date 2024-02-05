@@ -1,16 +1,66 @@
-import React from "react";
+import { Component } from "react";
 import SingleBook from "./SingleBook";
-import fantasy from "../data/fantasy.json";
-import { Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
+import CommentArea from "./CommentArea";
 
-const BookList = ({ books }) => {
-  return (
-    <Row>
-      {books.map((book, index) => (
-        <SingleBook key={index} book={book} />
-      ))}
-    </Row>
-  );
-};
+class BookList extends Component {
+  state = {
+    searchQuery: "",
+    selectedAsin: null,
+  };
+
+  handleBookSelect = (asin) => {
+    this.setState({ selectedAsin: asin });
+    this.props.onBookSelect(asin);
+  };
+
+  render() {
+    return (
+      <>
+        <Row className="justify-content-center mt-5">
+          <Col xs={12} md={4} className="text-center">
+            <Form.Group>
+              <Form.Control
+                type="search"
+                placeholder="Cerca un libro"
+                value={this.state.searchQuery}
+                onChange={(e) => this.setState({ searchQuery: e.target.value })}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row className="g-2 mt-3 ">
+          <Col xs={12} md={6}>
+            {this.props.books
+              .filter((b) =>
+                b.title.toLowerCase().includes(this.state.searchQuery)
+              )
+              .map((b) => (
+                <Col xs={12} md={4} key={b.asin}>
+                  <SingleBook
+                    book={b}
+                    onSelect={() => this.handleBookSelect(b.asin)}
+                    isSelected={this.state.selectedAsin === b.asin}
+                  />
+                </Col>
+              ))}
+          </Col>
+          <Col
+            xs={12}
+            md={6}
+            style={{
+              height: "100%",
+              overflowY: "auto",
+              position: "sticky",
+              top: 0,
+            }}
+          >
+            <CommentArea asin={this.state.selectedAsin} />
+          </Col>
+        </Row>
+      </>
+    );
+  }
+}
 
 export default BookList;

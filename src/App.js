@@ -3,26 +3,35 @@ import "./App.css";
 import MyNav from "./components/MyNav";
 import MyFooter from "./components/MyFooter";
 import Welcome from "./components/Welcome";
-import AllTheBooks from "./components/AllTheBooks";
+// import AllTheBooks from './components/AllTheBooks'
 import { Container } from "react-bootstrap";
-import SingleBook from "./components/SingleBook";
 import BookList from "./components/BookList";
+
 import fantasy from "./data/fantasy.json";
+import CommentArea from "./components/CommentArea";
+import { Component } from "react";
 
-function App() {
-  const books = fantasy;
+class App extends Component {
+  state = {
+    selectedAsin: null,
+  };
 
-  return (
-    <>
-      <MyNav />
-      <Container>
-        <Welcome />
-        <BookList books={books} />
-        {/* <AllTheBooks /> */}
-      </Container>
-      <MyFooter />
-    </>
-  );
+  handleBookSelect = (asin) => {
+    this.setState({ selectedAsin: asin });
+  };
+
+  render() {
+    return (
+      <>
+        <MyNav />
+        <Container>
+          <Welcome />
+          <BookList books={fantasy} onBookSelect={this.handleBookSelect} />
+        </Container>
+        <MyFooter />
+      </>
+    );
+  }
 }
 
 export default App;
