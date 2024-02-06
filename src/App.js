@@ -8,30 +8,20 @@ import { Container } from "react-bootstrap";
 import BookList from "./components/BookList";
 
 import fantasy from "./data/fantasy.json";
-import CommentArea from "./components/CommentArea";
-import { Component } from "react";
+import { useState } from "react";
 
-class App extends Component {
-  state = {
-    selectedAsin: null,
-  };
-
-  handleBookSelect = (asin) => {
-    this.setState({ selectedAsin: asin });
-  };
-
-  render() {
-    return (
-      <>
-        <MyNav />
-        <Container>
-          <Welcome />
-          <BookList books={fantasy} onBookSelect={this.handleBookSelect} />
-        </Container>
-        <MyFooter />
-      </>
-    );
-  }
+function App() {
+  return (
+    <>
+      <MyNav />
+      <Container>
+        <Welcome />
+        {/* <AllTheBooks /> */}
+        <BookList books={fantasy} />
+      </Container>
+      <MyFooter />
+    </>
+  );
 }
 
 export default App;
