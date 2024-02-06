@@ -44,15 +44,32 @@ const CommentArea = ({ asin }) => {
   }, [asin, update]);
 
   return (
-    <div className="text-center">
-      {isLoading && <Loading />}
-      {isError && <Error />}
-      <AddComment asin={asin} update={update} setUpdate={setUpdate} />
-      <CommentList
-        commentsToShow={comments}
-        update={update}
-        setUpdate={setUpdate}
-      />
+    <div
+      className="page-container"
+      style={{ display: "flex", flexDirection: "column" }}
+    >
+      <div
+        className="sticky-bar"
+        style={{
+          position: "sticky",
+          top: "0",
+          zIndex: "100",
+          backgroundColor: "#ffffff", // Sostituisci con il colore di sfondo desiderato
+          padding: "10px",
+          borderBottom: "1px solid #dddddd", // Sostituisci con il colore della linea desiderato
+        }}
+      >
+        {isLoading && <Loading />}
+        {isError && <Error />}
+        <AddComment asin={asin} update={update} setUpdate={setUpdate} />
+      </div>
+      <div className="content">
+        <CommentList
+          commentsToShow={comments}
+          update={update}
+          setUpdate={setUpdate}
+        />
+      </div>
     </div>
   );
 };

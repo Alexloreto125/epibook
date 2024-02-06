@@ -27,7 +27,9 @@ const SingleComment = ({ comment, update, setUpdate }) => {
 
   return (
     <ListGroup.Item>
-      {comment.comment}
+      {comment.author}
+      <p>{comment.comment}</p>
+      <p>RATE:{comment.rate} </p>
       <Button
         variant="danger"
         className="ms-2"
