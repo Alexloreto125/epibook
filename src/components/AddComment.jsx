@@ -1,7 +1,7 @@
 import { Component, useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-const AddComment = ({ asin, onAddComment }) => {
+const AddComment = ({ asin, update, setUpdate }) => {
   // state = {
   //   comment: {
   //     comment: '',
@@ -63,7 +63,8 @@ const AddComment = ({ asin, onAddComment }) => {
           setComment("");
           setRate(1);
           setElementId(asin);
-          onAddComment(newComment);
+
+          setUpdate(!update);
         } else {
           throw new Error("Qualcosa è andato storto");
         }

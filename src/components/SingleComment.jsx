@@ -1,6 +1,6 @@
 import { Button, ListGroup } from "react-bootstrap";
 
-const SingleComment = ({ comment, onDeleteComment }) => {
+const SingleComment = ({ comment, update, setUpdate }) => {
   const deleteComment = (asin) => {
     if (asin) {
       fetch(`https://striveschool-api.herokuapp.com/api/comments/${asin}`, {
@@ -13,7 +13,7 @@ const SingleComment = ({ comment, onDeleteComment }) => {
         .then((response) => {
           if (response.ok) {
             alert("La recensione è stata elimata!");
-            onDeleteComment(comment._id);
+            setUpdate(!update);
           } else {
             throw new Error("La recensione non è stata eliminata!");
           }

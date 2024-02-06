@@ -8,6 +8,8 @@ const CommentArea = ({ asin }) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [update, setUpdate] = useState(false);
+
   // console.log("prova asin", asin);
   useEffect(() => {
     if (asin) {
@@ -39,14 +41,18 @@ const CommentArea = ({ asin }) => {
           setIsLoading(false);
         });
     }
-  }, [asin]);
+  }, [asin, update]);
 
   return (
     <div className="text-center">
       {isLoading && <Loading />}
       {isError && <Error />}
-      <AddComment asin={asin} />
-      <CommentList commentsToShow={comments} />
+      <AddComment asin={asin} update={update} setUpdate={setUpdate} />
+      <CommentList
+        commentsToShow={comments}
+        update={update}
+        setUpdate={setUpdate}
+      />
     </div>
   );
 };
