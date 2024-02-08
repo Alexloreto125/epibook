@@ -2,7 +2,11 @@ import { ListGroup } from "react-bootstrap";
 import SingleComment from "./SingleComment";
 
 const CommentList = ({ commentsToShow, update, setUpdate }) => (
-  <ListGroup style={{ color: "black" }} className="mt-2">
+  <ListGroup
+    style={{ color: "black" }}
+    className="mt-2"
+    data-testid="CommentList"
+  >
     {commentsToShow.map((comment) => (
       <SingleComment
         comment={comment}

@@ -17,6 +17,7 @@ const SingleBook = ({ book, selectedBook, changeSelectedBook }) => {
   return (
     <>
       <Card
+        data-testid="bootstrap-card"
         // onClick={() => this.setState({ selected: !this.state.selected })}
         onClick={handleCardClick}
         style={{

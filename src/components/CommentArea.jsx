@@ -45,6 +45,7 @@ const CommentArea = ({ asin }) => {
 
   return (
     <div
+      data-testid="CommentArea"
       className="page-container"
       style={{ display: "flex", flexDirection: "column" }}
     >

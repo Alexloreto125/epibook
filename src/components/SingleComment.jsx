@@ -26,7 +26,7 @@ const SingleComment = ({ comment, update, setUpdate }) => {
   };
 
   return (
-    <ListGroup.Item>
+    <ListGroup.Item data-testid="single-comment">
       {comment.author}
       <p>{comment.comment}</p>
       <p>RATE:{comment.rate} </p>

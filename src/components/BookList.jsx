@@ -15,7 +15,7 @@ const BookList = (books) => {
     setSelectedBook(asin);
   };
   console.log("oggetto asi", books.books[0].asin);
-  console.log("oggetto Selected", selectedBook);
+  console.log("oggetto Selected", books);
 
   return (
     <>
